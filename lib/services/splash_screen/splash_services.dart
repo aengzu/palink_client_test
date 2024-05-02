@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
-import '../../controllers/home_controller.dart';
+import '../../viewmodels/controllers/home_controller.dart';
+
 
 class SplashServices {
   static void getApiData() {

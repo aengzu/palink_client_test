@@ -17,7 +17,6 @@ class MyPageController extends GetxController {
   Rx<User?> model = Rx<User?>(null);
 
 
-
   // TODO get 함수 정의하기
 
 
@@ -27,13 +26,7 @@ class MyPageController extends GetxController {
       //.then((value) {: hitApi 메소드가 완료되면, 결과값 value를 사용하여 이어지는 블록({})의 코드를 실행
       // then 메소드는 Future 객체의 완료를 처리
       print(value);
-
     }
     );
-
-
-    // navigate user to homescreen
-
   }
-
 }

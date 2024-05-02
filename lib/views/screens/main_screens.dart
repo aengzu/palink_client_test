@@ -26,7 +26,7 @@ class _MainScreensState extends State<MainScreens> {
         index: _selectedIndex,
         children: [
           HomeScreen(),
-          ChattingScreen(),
+          ChatPage(),
           MyPageScreen(),
         ],
 

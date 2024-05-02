@@ -18,10 +18,14 @@ class PalinkUI extends StatelessWidget {
     return GetMaterialApp(
       title: 'palink_ui',
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
       home: SplashScreen(),
     );
   }
 }
+
 
 
 
