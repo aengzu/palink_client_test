@@ -6,7 +6,7 @@
 // class OpenAIService {
 //   final List<Map<String, String>> messages = [];
 //   static const apiUri = 'https://api.openai.com/v1/chat/completions';
-//   static const apiKey = 'sk-proj-zXar2M8veKtnDWVsnjbzT3BlbkFJv6RKj9J1EECLwodDjjmv';
+//
 //
 //   Future<String> chatGPTAPI(String prompt) async {
 //     messages.add({
