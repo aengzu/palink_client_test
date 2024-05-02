@@ -28,13 +28,13 @@
 //   }
 //
 //   Future<String> sendToOpenAI(String text) async {
-//   //  const apiKey = ;
+//   //  const  = ;
 //     final url = Uri.parse('https://api.openai.com/v1/engines/davinci-codex/completions');
 //     final response = await http.post(
 //       url,
 //       headers: {
 //         'Content-Type': 'application/json',
-//         'Authorization': 'Bearer $apiKey'
+//         'Authorization': 'Bearegitr $apiKey'
 //       },
 //       body: jsonEncode({
 //         'prompt': text,
