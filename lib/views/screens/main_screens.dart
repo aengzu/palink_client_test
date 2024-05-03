@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:palink_client/viewmodels/controllers/mypage_controller.dart';
 
+import '../../test.dart';
 import 'chatting/chatting_screen.dart';
 import 'home/home_screen.dart';
 import 'mypage/mypage_screen.dart';

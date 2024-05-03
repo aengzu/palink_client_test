@@ -77,14 +77,7 @@ class MyPageScreen extends StatelessWidget {
                   ]))
             ],
           ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.blue,
-          onPressed: () {
-            userListController.loading = true;
-            userListController.loadUser();
-          },
-          child: const Icon(Icons.verified_user_outlined),
-        ),),
+      ),
     );
   }
 }

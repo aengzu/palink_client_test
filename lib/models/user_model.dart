@@ -1,17 +1,21 @@
 class UserModel {
-  String? fullName;
-  String? userImage;
-  String? cellphone;
+  int id;
+  String? username;
+  String? phone_number;
+ // String? image;
 
   UserModel({
-    this.fullName,
-    this.userImage,
-    this.cellphone,
+    required this.id,
+    this.username,
+    this.phone_number,
+
+  //  this.image,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-    fullName: json['name']['first'] + json['name']['last'],
-    userImage: json['picture']['medium'],
-    cellphone: json['cell'],
+    id: json['id'],
+    username: json['usrname'],
+    phone_number: json['phone_number'],
+   // image: json['image'],
   );
 }

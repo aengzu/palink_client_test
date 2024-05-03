@@ -22,32 +22,32 @@ class UserWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         child: Column(
           children: [
-            ProfileCard(image: CircleAvatar(
-              radius: 50,
-              backgroundImage: Image.network(user.userImage ?? '').image,
-            ),
-              name: Text(
-                user.fullName ?? '',
-                style: const TextStyle(fontSize: 20),
-              ),
-            ),
-            Divider(
-              color: Colors.grey[80],
-              thickness: 1.0,
-            ),
-            const SizedBox(
-              width: 20,
-            ),
+            // ProfileCard(image: CircleAvatar(
+            //   radius: 50,
+            // //  backgroundImage: Image.network(user.userimage ?? '').image,
+            // ),
+            //   name: Text(
+            //     user.username ?? '',
+            //     style: const TextStyle(fontSize: 20),
+            //   ),
+            // ),
+            // Divider(
+            //   color: Colors.grey[80],
+            //   thickness: 1.0,
+            // ),
+            // const SizedBox(
+            //   width: 20,
+            // ),
 
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  InfoCard(section: '이름', name: user.fullName ?? ''),
+                  InfoCard(section: '이름', name: user.username ?? ''),
                   const SizedBox(
                     height: 10,
                   ),
-                  InfoCard(section: '번호', name:  user.cellphone ?? ''),
+                  InfoCard(section: '번호', name:  user.phone_number ?? ''),
                 ],
               ),
             )

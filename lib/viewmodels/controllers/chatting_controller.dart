@@ -4,12 +4,15 @@
 // import 'package:http/http.dart' as http;
 // import 'package:uuid/uuid.dart';
 //
+// // 현재 채팅 뷰 통합 -> 분리 예정
+//
 // class ChatViewModel with ChangeNotifier {
 //   List<types.Message> _messages = [];
 //   final types.User _user = const types.User(id: 'user-id');
 //
 //   List<types.Message> get messages => _messages;
 //   types.User get user => _user;
+//
 //
 //   void sendMessage(String text) async {
 //     final messageId = const Uuid().v4();
@@ -34,7 +37,7 @@
 //       url,
 //       headers: {
 //         'Content-Type': 'application/json',
-//         'Authorization': 'Bearegitr $apiKey'
+//         'Authorization': 'Bearegitr $apiKey',
 //       },
 //       body: jsonEncode({
 //         'prompt': text,

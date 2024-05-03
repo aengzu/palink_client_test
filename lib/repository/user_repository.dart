@@ -9,7 +9,7 @@ class UserRepository {
   Future<List<UserModel>> getUserInfo() async {
     try {
       final userInfo =
-      await http.get(Uri.parse('https://randomuser.me/api/?results=30'));
+      await http.get(Uri.parse('http://127.0.0.1:8000/users/1234'));
       if (userInfo.statusCode == 200) {
         var userInfoData = jsonDecode(userInfo.body);
         List<UserModel> userList = userInfoData['results']
