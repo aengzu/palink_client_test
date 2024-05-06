@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:palink_client/views/screens/home/components/today_scenario_card.dart';
 import 'package:palink_client/views/screens/main_screens.dart';
 
-import '../../models/today_scenario.dart';
+import '../../models/today_conversation.dart';
 import '../../models/user.dart';
 import '../../repository/home_repository.dart';
 import '../../views/screens/home/home_screen.dart';

@@ -1,26 +1,29 @@
 class Scenario {
-  final int id;
+  final int scenarioId;
+  final int categoryId;
   final String scenarioName;
-  final String description;
-  final DateTime createdAt;
+  final String scenarioDescription;
+  final DateTime creationDate;
 
-  Scenario({required this.id, required this.scenarioName, required this.description, required this.createdAt});
+  Scenario({required this.scenarioId, required this.categoryId, required this.scenarioName, required this.scenarioDescription,  required this.creationDate});
 
   factory Scenario.fromJson(Map<String, dynamic> json) {
     return Scenario(
-      id: json['id'],
+      scenarioId: json['scenario_id'],
+      categoryId: json['category_id'],
       scenarioName: json['scenario_name'],
-      description: json['description'],
-      createdAt: DateTime.parse(json['created_at']),
+      scenarioDescription: json['scenario_description'],
+      creationDate: json['creation_date'],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
+      'scenario_id' : scenarioId,
+      'category_id' : categoryId,
       'scenario_name': scenarioName,
-      'description': description,
-      'created_at': createdAt.toIso8601String(),
+      'scenario_description': scenarioDescription,
+      'creation_date' : creationDate
     };
   }
 }

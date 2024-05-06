@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:palink_client/views/screens/home/components/today_scenario_card.dart';
 import 'package:palink_client/views/screens/main_screens.dart';
 
-import '../../models/today_scenario.dart';
+import '../../models/today_conversation.dart';
 import '../../repository/home_repository.dart';
 import '../../views/screens/home/home_screen.dart';
 
@@ -13,7 +13,7 @@ import '../../views/screens/home/home_screen.dart';
 // GetXController 를 상속받아 상태 관리를 수행한다.
 class HomeController extends GetxController {
 
-  Rx<TodayScenario?> model = Rx<TodayScenario?>(null);
+ // Rx<TodayScenario?> model = Rx<TodayScenario?>(null);
 
 
 

@@ -1,16 +1,23 @@
 class User {
   final int id;
-  final String mobileNumber;
+  final String userName;
   final String email;
-  final String school;
+  final String phoneNumber;
+  String? gender;
+  String? school;
+  // pawword 는 따로 빼기
 
-  User({required this.id, required this.mobileNumber, required this.email, required this.school});
+  User({required this.id, required this.userName, required this.email, required this.phoneNumber, required String gender, required String school});
+
+
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       id: json['id'],
-      mobileNumber: json['mobile_number'],
+      userName: json['username'],
       email: json['email'],
+      phoneNumber: json['phone_number'],
+      gender: json['gender'],
       school: json['school'],
     );
   }
@@ -18,8 +25,10 @@ class User {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'mobile_number': mobileNumber,
+      'username': userName,
       'email': email,
+      'phone_number': phoneNumber,
+      'gender' : gender,
       'school': school,
     };
   }

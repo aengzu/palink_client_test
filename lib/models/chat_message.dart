@@ -1,29 +1,30 @@
-class ChatMessage {
-  final int id;
-  final int chatRoomId;
-  final int senderId;
-  final String message;
-  final DateTime createdAt;
+import 'dart:html';
 
-  ChatMessage({required this.id, required this.chatRoomId, required this.senderId, required this.message, required this.createdAt});
+class ChatMessage {
+  final int messageId;
+  final int userId;
+  final int chatroomId;
+  final Text messageContent;
+  final DateTime creationDate;
+
+  ChatMessage({required this.messageId, required this.userId, required this.chatroomId, required this.messageContent, required this.creationDate});
 
   factory ChatMessage.fromJson(Map<String, dynamic> json) {
     return ChatMessage(
-      id: json['id'],
-      chatRoomId: json['chat_room_id'],
-      senderId: json['sender_id'],
-      message: json['message'],
-      createdAt: DateTime.parse(json['created_at']),
-    );
+      messageId: json['message_id'],
+      userId : json['user_id'],
+      chatroomId: json['chatroom_id'],
+      messageContent : json['message_contest'],
+      creationDate : json['creation_date'],);
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
-      'chat_room_id': chatRoomId,
-      'sender_id': senderId,
-      'message': message,
-      'created_at': createdAt.toIso8601String(),
+      'message_id': messageId,
+      'user_id': userId,
+      'chatroom_id': chatroomId,
+      'message_contest': messageContent,
+      'creation_date': creationDate,
     };
   }
 }
