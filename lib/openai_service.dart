@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
@@ -7,14 +6,14 @@ class OpenAIService {
   final List<Map<String, String>> messages = [];
   static const apiUri = 'https://api.openai.com/v1/chat/completions';
 
-  // TODO: 여기에 APIKEY
-  get apiKey => '여기에APIKEY';
-
+  // TODO: 여기에 키
+  get apiKey =>
 
   Future<String> chatGPTAPI(String prompt) async {
+    // 유저의 메시지를 메시지 리스트에 추가
     messages.add({
       "role": "user",
-      "content": "You are a chatting bot called chatbot and you are supposed to only talk in Korean. Your role is given by user. This is the situation. $prompt",
+      "content": "You are a roleplaying chatting bot called chatbot and you are supposed to only talk in Korean. You are korean teenager. Your personality is very bad . Your role is given by user. This is the situation. $prompt",
     });
 
     try {
@@ -33,14 +32,17 @@ class OpenAIService {
 
       if (response.statusCode == 200) {
         String content = utf8.decode(response.bodyBytes);
-        content = jsonDecode(content)['choices'][0]['message']['content'];
-        content = content.trim();
+        Map decodedContent = jsonDecode(content);
+        String replyMessage = decodedContent['choices'][0]['message']['content'];
+        replyMessage = replyMessage.trim();
 
+        // GPT의 응답 메시지를 메시지 리스트에 추가
         messages.add({
           'role': 'assistant',
-          'content': content,
+          'content': replyMessage,
         });
-        return content;
+
+        return replyMessage;
       } else {
         return 'Server error: ${response.statusCode}';
       }

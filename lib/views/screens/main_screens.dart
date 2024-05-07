@@ -2,11 +2,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:palink_client/viewmodels/controllers/mypage_controller.dart';
+import 'package:palink_client/views/screens/login/login_screen.dart';
 
 import '../../test.dart';
-import 'chatting/chatting_screen.dart';
 import 'home/home_screen.dart';
-import 'mypage/mypage_screen.dart';
+import 'login/login_view.dart';
+
 
 
 
@@ -28,7 +29,7 @@ class _MainScreensState extends State<MainScreens> {
         children: [
           HomeScreen(),
           ChatPage(),
-          MyPageScreen(),
+          LoginView(),
         ],
 
       ),

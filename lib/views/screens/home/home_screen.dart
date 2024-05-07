@@ -1,10 +1,12 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:palink_client/contants/image_assets.dart';
 import 'package:palink_client/views/components/appbar_perferred_size.dart';
 import 'package:palink_client/views/components/custom_appbar.dart';
+import 'package:palink_client/views/screens/category/category_screen.dart';
 import 'package:palink_client/views/screens/home/components/roleplaying_btn.dart';
 
 import '../../components/custom_button_lg.dart';
@@ -39,8 +41,8 @@ class HomeScreen extends StatelessWidget {
             children: [
               _buildeCharacter(),
               BubbleSpecialTwo(text: '안녕 👋🏻나는 AI 챗봇이야.\n나랑 롤플레잉 하러 가자',color: Color(0xffE4F0FE),
-              isSender:false,tail: true,button: RoleplayingButton(onPressed: (){},),
-              ),
+              isSender:false,tail: true,button: RoleplayingButton(onPressed: (){ Get.to(() => CategoryScreen());  }// 페이지 이동},),
+              ),),
             ],
           ),
               ],

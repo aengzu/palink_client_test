@@ -3,11 +3,11 @@ class User {
   final String userName;
   final String email;
   final String phoneNumber;
-  String? gender;
-  String? school;
+  final String gender;
+  final String school;
   // pawword 는 따로 빼기
 
-  User({required this.id, required this.userName, required this.email, required this.phoneNumber, required String gender, required String school});
+  User({required this.id, required this.userName, required this.email, required this.phoneNumber, required this.gender, required this.school});
 
 
 

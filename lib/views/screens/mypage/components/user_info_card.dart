@@ -9,16 +9,16 @@ class InfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 30, top: 20),
+      padding: const EdgeInsets.only(left: 30, top: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Text(section,style: TextStyle(
+          Text(section,style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),),
           SizedBox(width: 20,),
-          Text(name,style: TextStyle(
+          Text(name, style: const TextStyle(
             fontSize: 20,
           ),),
         ]

@@ -253,6 +253,7 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(title: Text("대화창")),
     body: Chat(
       isAttachmentUploading: isDataLoading,
       l10n: const ChatL10nEn(

@@ -1,83 +1,47 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
-import 'package:palink_client/views/screens/mypage/components/user_widget.dart';
+import 'package:palink_client/models/user.dart';
+import 'package:palink_client/viewmodels/controllers/login_controller.dart';
+import 'package:palink_client/viewmodels/controllers/user_profile_controller.dart';
+import 'package:palink_client/views/components/custom_button_lg.dart';
 
-
-import '../../../viewmodels/controllers/user_controller.dart';
-
+import 'components/user_info_card.dart';
 class MyPageScreen extends StatelessWidget {
-  MyPageScreen({super.key});
-  final userListController = Get.put(UserController());
-
-  Widget loading() {
-    return const Center(
-      child: CircularProgressIndicator(),
-    );
-  }
-
+  final UserProfileController userProfileController = Get.put(UserProfileController());
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-        title: Text('mypage 화면')),
-          body: Column(
+    final LoginController loginController = Get.find();
+
+    return Scaffold(
+      appBar: AppBar(title: Text("My Page")),
+      body: Obx(() {
+        var user = userProfileController.user.value;
+        if (user != null) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const TabBar(
-                  indicatorColor: Colors.blue,
-                  labelStyle: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.normal,
-                      fontSize: 18),
-                  indicatorWeight: 3,
-                  tabs: [
-                    Tab(
-                      text: '내정보',
-                      height: 50,
-                    ),
-                    Tab(
-                      text: '대화 기록',
-                      height: 50,
-                    ),
-                  ]),
-              Expanded(
-                  child: TabBarView(children: [
-                  GetX<UserController>(builder: (_) {
-              if (userListController.loading == true) {
-              return loading();
-              } else {
-              return UserWidget(
-              user: userListController.userDataList[0],
-              );
-              }
-              }),
-                    ListView.builder(
-                        key: const PageStorageKey("LIST_VIEW"),
-                        itemCount: 10,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            padding: const EdgeInsets.symmetric(vertical: 12),
-                            width: MediaQuery.of(context).size.width,
-                            child: Center(
-                              child: Text(
-                                "List View $index",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.accents[index % 15],
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          );
-                        }),
-                  ]))
+              InfoCard(section: '이름', name: user.userName),
+              InfoCard(section: '이메일', name: user.email),
+              InfoCard(section: '번호', name: user.phoneNumber),
+              InfoCard(section: '성별', name: user.gender),
+              InfoCard(section: '학교', name: user.school),
+
+              SizedBox(height: 50,),
+
+              CustomButtonLG(label: '편집하기', onPressed: () => _editUser(context, user))
             ],
-          ),
-      ),
+          );
+        } else {
+          userProfileController.fetchUserInfo(loginController.token.value);
+          return CircularProgressIndicator();
+        }
+      }),
     );
+  }
+
+  void _editUser(BuildContext context, User user) {
+    // Implementation for editing user details
   }
 }

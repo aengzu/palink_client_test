@@ -1,5 +1,7 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:palink_client/test.dart';
 
 import '../../../contants/image_assets.dart';
 import '../../components/appbar_perferred_size.dart';
@@ -13,30 +15,46 @@ class CategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text('카테고리 화면'),
-        actions: [
-          IconButton(onPressed: (){}, icon: const Icon(CupertinoIcons.bell)),
-        ],
-        bottom: appBarBottomLine(),
-      ),
+      appBar: AppBar(title: Text("카테고리 선택")),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10.0),
-        child: Row(
+        padding: EdgeInsets.symmetric(horizontal: 0.0),
+        child: Center(
+          child: Container(
+            height: 300,
+            child: Row(
               children: [
                 _buildeCharacter(),
-                BubbleSpecialTwo(text: '안녕 👋🏻나는 AI 챗봇이야.\n나랑 롤플레잉 하러 가자',color: Color(0xffE4F0FE),
-                  isSender:false,tail: true,button: RoleplayingButton(onPressed: (){},),
+                Container(
+                  color: Color(0xffe4f0fe),// Expanded를 사용하여 나머지 공간을 모두 차지하게 함
+                  child: Center(
+                    child: Column(
+                      children: [
+                        SizedBox(height: 30),
+                        Text('원하는 상황 카테고리를 골라줘!'),
+                        RoleplayingButton(onPressed: (){Get.to(ChatPage());}),
+                        SizedBox(height: 10),
+                        RoleplayingButton(onPressed: (){Get.to(ChatPage());}),
+                        SizedBox(height: 10),
+                        RoleplayingButton(onPressed: (){Get.to(ChatPage());}),
+                        SizedBox(height: 10),
+                        RoleplayingButton(onPressed: (){Get.to(ChatPage());}),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
   }
+
   Padding _buildeCharacter() {
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
       child: Image.asset(ImageAssets.character_img, width: 100, height: 230),  // Correct usage of the Image.asset method
     );
   }
+
 }
