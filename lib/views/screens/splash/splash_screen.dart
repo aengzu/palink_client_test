@@ -26,9 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    SplashServices.getApiData();
-  }
-  late AnimationController _controller;
+    SplashServices.getApiData();}
 
   @override
   Widget build(BuildContext context) {
