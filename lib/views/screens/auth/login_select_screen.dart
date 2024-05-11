@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../contants/image_assets.dart';
 import '../../components/custom_button_lg.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class LoginSelectScreen extends StatelessWidget {
+  const LoginSelectScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

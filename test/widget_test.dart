@@ -1,79 +1,54 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:get/get.dart';
+import 'package:palink_client/contants/text_theme.dart';
+import 'package:palink_client/viewmodels/controllers/login_controller.dart';
+import 'package:palink_client/views/components/custom_button_lg.dart';
+import 'package:palink_client/views/screens/mypage/mypage_screen.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: UserScreen(),
-    );
-  }
-}
-
-class UserScreen extends StatefulWidget {
-  @override
-  _UserScreenState createState() => _UserScreenState();
-}
-
-class _UserScreenState extends State<UserScreen> {
-  // usreData 에 json 형식으로 담기게 된다.
-  Map<String, dynamic> userData = {};
-  bool isLoading = true;
-
-  @override
-  void initState() {
-    super.initState();
-    fetchUserData();
-  }
-
-  Future<void> fetchUserData() async {
-    try {
-      final response = await http.get(Uri.parse('http://127.0.0.1:8000/users/1234'));
-      if (response.statusCode == 200) {
-        // UTF-8로 디코드를 명시적으로 처리
-        final body = utf8.decode(response.bodyBytes);
-        setState(() {
-          userData = json.decode(body);
-          isLoading = false;
-        });
-      } else {
-        throw Exception('Failed to load user data');
-      }
-    } catch (e) {
-      print('Error fetching data: $e');
-      setState(() {
-        isLoading = false;
-      });
-    }
-  }
+class LoginView extends StatelessWidget {
+  final LoginController loginController = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text('User Information'),
-      ),
-      body: isLoading
-          ? Center(child: CircularProgressIndicator())
-          : userData.isEmpty
-          ? Center(child: Text('No data found'))
-          : Padding(
-        padding: const EdgeInsets.all(16.0),
+      appBar: AppBar(title: Text("로그인")),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0), // 추가한 전체 Padding
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // json 에서 key 값으로 접근할 수 있다.
-            Text('ID: ${userData['id']}'),
-            Text('Username: ${userData['username']}'),
-            Text('Email: ${userData['email']}'),
-            Text('Phone Number: ${userData['phone_number']}'),
-            Text('Gender: ${userData['gender']}'),
-            Text('School: ${userData['school']}'),
+            SizedBox(height: 50,),
+            TextField(
+              controller: emailController,
+              decoration: const InputDecoration(
+                hintText: '이름을 입력하세요.',
+                contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0), // 추가한 필드별 Padding
+                border: OutlineInputBorder( // 추가한 테두리 스타일
+                  borderSide: BorderSide(color: Colors.blue),
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            TextField(
+              controller: passwordController,
+              obscureText: true,
+              decoration: const InputDecoration(
+                hintText: 'password를 입력하세요.',
+                contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0), // 추가한 필드별 Padding
+                border: OutlineInputBorder( // 추가한 테두리 스타일
+                  borderSide: BorderSide(color: Colors.blue),
+                ),
+              ),
+            ),
+            SizedBox(height: 40), // 버튼과의 간격
+            CustomButtonLG(label: '로그인하기', onPressed: () async {
+              await loginController.login(emailController.text, passwordController.text);
+              if (loginController.token.isNotEmpty) {
+                Get.to(() => MyPageScreen());
+              }
+            },),
           ],
         ),
       ),

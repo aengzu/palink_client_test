@@ -3,9 +3,11 @@ import 'package:get/get.dart';
 import 'package:palink_client/contants/text_theme.dart';
 import 'package:palink_client/viewmodels/controllers/login_controller.dart';
 import 'package:palink_client/views/components/custom_button_lg.dart';
+import 'package:palink_client/views/screens/auth/signup_screen.dart';
+import 'package:palink_client/views/screens/main_screens.dart';
 import 'package:palink_client/views/screens/mypage/mypage_screen.dart';
 
-class LoginView extends StatelessWidget {
+class LoginScreen extends StatelessWidget {
   final LoginController loginController = Get.put(LoginController());
 
   @override
@@ -46,9 +48,17 @@ class LoginView extends StatelessWidget {
             CustomButtonLG(label: '로그인하기', onPressed: () async {
               await loginController.login(emailController.text, passwordController.text);
               if (loginController.token.isNotEmpty) {
-                Get.to(() => MyPageScreen());
+                Get.to(() => MainScreens());
               }
-            },),
+            },
+            ),
+            TextButton(
+              onPressed: () {Get.to(()=>SignUpScreen());},
+              child: const Text(
+                '회원 가입하기',
+                style: TextStyle(fontSize: 16, color: Colors.blue),
+              ),
+            ),
           ],
         ),
       ),

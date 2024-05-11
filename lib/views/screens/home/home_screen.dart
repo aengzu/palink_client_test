@@ -5,12 +5,9 @@ import 'package:get/get.dart';
 
 import 'package:palink_client/contants/image_assets.dart';
 import 'package:palink_client/views/components/appbar_perferred_size.dart';
-import 'package:palink_client/views/components/custom_appbar.dart';
 import 'package:palink_client/views/screens/category/category_screen.dart';
 import 'package:palink_client/views/screens/home/components/roleplaying_btn.dart';
 
-import '../../components/custom_button_lg.dart';
-import 'components/bubble.dart';
 import 'components/bubble_special.dart';
 import 'components/today_scenario_card.dart';
 
