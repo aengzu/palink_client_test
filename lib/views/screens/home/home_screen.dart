@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('mypage 화면'),
+        title: Text('홈 화면'),
         actions: [
           IconButton(onPressed: (){}, icon: const Icon(CupertinoIcons.bell)),
         ],
@@ -50,7 +50,7 @@ class HomeScreen extends StatelessWidget {
 
   Padding _buildeCharacter() {
     return Padding(
-      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 0, top: 30),
       child: Image.asset(ImageAssets.character_img, width: 100, height: 230),  // Correct usage of the Image.asset method
     );
   }

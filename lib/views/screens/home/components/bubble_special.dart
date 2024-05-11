@@ -37,6 +37,8 @@ class BubbleSpecialTwo extends StatelessWidget {
     this.textStyle = const TextStyle(
       color: Colors.black87,
       fontSize: 16,
+      fontWeight: FontWeight.normal,
+
     ),
   }) : super(key: key);
 
@@ -94,17 +96,17 @@ class BubbleSpecialTwo extends StatelessWidget {
                 Padding(
                   padding: stateTick
                       ? EdgeInsets.only(right: 10)
-                      : EdgeInsets.symmetric(vertical: 20, horizontal: 0),
+                      : EdgeInsets.symmetric(vertical: 17, horizontal: 8),
                   child: Column(
                     children: [
                       Padding(padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * .01),
                         child: Text(
                           text,
                           style: textStyle,
-                          textAlign: TextAlign.left,
+                          textAlign: TextAlign.start,
                         ),
                       ),
-                      SizedBox(height: 40),
+                      SizedBox(height: 20),
                       if (button != null) button!,
           ],
                 ),
