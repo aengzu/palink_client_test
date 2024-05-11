@@ -24,7 +24,6 @@ class MyPageScreen extends StatelessWidget {
             children: [
               InfoCard(section: '이름', name: user.userName),
               InfoCard(section: '이메일', name: user.email),
-              InfoCard(section: '번호', name: user.phoneNumber),
               InfoCard(section: '성별', name: user.gender),
               InfoCard(section: '학교', name: user.school),
 

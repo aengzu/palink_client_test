@@ -1,31 +1,27 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:palink_client/contants/image_assets.dart';
-import 'package:palink_client/views/screens/main_screens.dart';
+import 'package:get/get.dart';
+import 'package:palink_client/app_controller.dart';
 import 'package:palink_client/views/screens/splash/splash_screen.dart';
 
-void main() => runApp(const PalinkUI());
+void main() {
+  runApp(const MyApp());
+}
 
-
-class PalinkUI extends StatelessWidget {
-  const PalinkUI({super.key});
-
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // AppController 초기화
+    Get.put(AppController());
+
     return GetMaterialApp(
-      title: 'palink_ui',
+      title: 'Palink UI',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: SplashScreen(),
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: const SplashScreen(),
     );
+
+
   }
 }
-
-
-
-
