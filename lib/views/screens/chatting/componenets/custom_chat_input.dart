@@ -12,7 +12,7 @@ class CustomChatInput extends StatelessWidget {
     if (!isVisible) return Container(); // Return an empty container if not visible
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0), // Add some margin around the container
+      margin: const EdgeInsets.only(left: 15.0, right: 15.0, top: 20.0, bottom: 40.0), // Add some margin around the container
       padding: const EdgeInsets.all(6.0),
       decoration: BoxDecoration(
         color: Colors.grey[200], // Background color

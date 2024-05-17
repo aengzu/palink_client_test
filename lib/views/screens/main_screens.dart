@@ -1,13 +1,13 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:palink_client/viewmodels/controllers/chat_viewmodel.dart';
 import 'package:palink_client/views/screens/chatting/chat_screen.dart';
 import 'package:palink_client/views/screens/mypage/mypage_screen.dart';
+import '../../models/category.dart';
 import '../../test.dart';
 import 'auth/login_screen.dart';
 import 'home/home_screen.dart';
-
 
 class MainScreens extends StatefulWidget {
   const MainScreens({super.key});
@@ -26,10 +26,8 @@ class _MainScreensState extends State<MainScreens> {
         index: _selectedIndex,
         children: [
           HomeScreen(),
-          ChatScreen(),
           MyPageScreen(),
         ],
-
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
@@ -38,7 +36,6 @@ class _MainScreensState extends State<MainScreens> {
         selectedItemColor: Colors.blue,
         items: const [
           BottomNavigationBarItem(label: '홈', icon: Icon(CupertinoIcons.home)),
-          BottomNavigationBarItem(label: '채팅', icon: Icon(CupertinoIcons.chat_bubble)),
           BottomNavigationBarItem(label: '내 정보', icon: Icon(CupertinoIcons.person_crop_circle_fill))
         ],
         onTap: (index) {

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:get/get.dart';
+import 'package:palink_client/contants/image_assets.dart';
 import 'package:palink_client/models/user.dart';
 import 'package:palink_client/viewmodels/controllers/user_profile_controller.dart';
 import 'package:uuid/uuid.dart';
 
 class ChatViewModel extends ChangeNotifier {
-  final UserProfileController userProfileController = Get.put(UserProfileController());
-
+  final UserProfileController userProfileController = Get.find<UserProfileController>();
   List<types.Message> _messages = [];
 
   types.User? _user;
@@ -90,8 +90,27 @@ class ChatViewModel extends ChangeNotifier {
   }
 
   void _initializeUser() {
+    print("Initializing user...");
+    if (userProfileController.user.value != null) {
+      print("User is already initialized.");
+      var user = userProfileController.user.value!;
+      _user = types.User(
+        id: user.id.toString(),
+        firstName: user.userName,
+        lastName: '',
+        imageUrl: '', // Add image URL if available
+        metadata: {
+          'email': user.email,
+          'gender': user.gender,
+          'school': user.school,
+        },
+      );
+      notifyListeners();
+    }
+
     userProfileController.user.listen((user) {
       if (user != null) {
+        print("User data changed: ${user.userName}");
         _user = types.User(
           id: user.id.toString(),
           firstName: user.userName,
@@ -104,6 +123,8 @@ class ChatViewModel extends ChangeNotifier {
           },
         );
         notifyListeners();
+      } else {
+        print("User data is null");
       }
     });
   }
