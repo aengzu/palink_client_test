@@ -1,6 +1,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:palink_client/viewmodels/controllers/chat_viewmodel.dart';
+import 'package:palink_client/views/screens/chatting/chat_screen.dart';
 import 'package:palink_client/views/screens/mypage/mypage_screen.dart';
 import '../../test.dart';
 import 'auth/login_screen.dart';
@@ -24,7 +26,7 @@ class _MainScreensState extends State<MainScreens> {
         index: _selectedIndex,
         children: [
           HomeScreen(),
-          ChatPage(),
+          ChatScreen(),
           MyPageScreen(),
         ],
 

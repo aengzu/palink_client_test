@@ -12,7 +12,7 @@ class MyPageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LoginController loginController = Get.find();
+    final LoginController loginController = Get.find<LoginController>();
 
     return Scaffold(
       appBar: AppBar(title: Text("My Page")),

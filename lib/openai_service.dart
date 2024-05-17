@@ -10,7 +10,7 @@ class OpenAIService {
   static const apiUri = 'https://api.openai.com/v1/chat/completions';
 
   // TODO: 여기에 APIKEY
-  get apiKey => 'API';
+  get apiKey => '';
   OpenAIService() {
     initializeMessages();  // 서비스 인스턴스 생성 시 메시지 초기화
   }

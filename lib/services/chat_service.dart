@@ -24,20 +24,25 @@ class ChatService {
   }
 
   // 채팅 세션 시작
-  Future<void> initiateChatSession(int categoryId) async {
+  // 채팅 세션 시작 메소드 수정
+  Future<int> initiateChatSession(int categoryId) async {
     try {
       final response = await http.post(
           Uri.parse('$baseUrl/chats/start'),
           headers: {"Content-Type": "application/json"},
           body: json.encode({"category_id": categoryId})
       );
-      if (response.statusCode != 200) {
+      if (response.statusCode == 200) {
+        var data = json.decode(response.body);
+        return data['session_id']; // 세션 ID 반환 가정
+      } else {
         throw Exception('Failed to initiate chat session with status: ${response.statusCode}');
       }
     } catch (e) {
       throw Exception('Error initiating chat session: $e');
     }
   }
+
 
   // 메시지 보내기
   Future<void> sendMessage(int sessionId, String message) async {
