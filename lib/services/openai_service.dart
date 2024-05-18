@@ -13,9 +13,6 @@ class OpenAIService {
   get apiKey => AppUrl().apiKey;
 
 
-
-
-
   Future<String> extractConversationInfo(String prompt, String category, types.User user) async {
     final requestPrompt = '''당신의 USER가 입력한 내용을 분석하여 [대화 상황과 대화 참여자의 정보]를 json 형태로 출력해야 합니다.
 

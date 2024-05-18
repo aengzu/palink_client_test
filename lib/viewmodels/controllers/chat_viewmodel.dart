@@ -1,7 +1,7 @@
-// viewmodels/chat_viewmodel.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:get/get.dart';
+import 'package:palink_client/services/chat_service.dart';
 import 'package:palink_client/services/openai_service.dart';
 import 'package:palink_client/viewmodels/controllers/user_profile_controller.dart';
 import 'package:uuid/uuid.dart';
@@ -12,8 +12,10 @@ import '../../views/screens/chatting/roleplaying_screen.dart';
 class ChatViewModel extends ChangeNotifier {
   final UserProfileController userProfileController = Get.find<UserProfileController>();
   final OpenAIService openAIService = OpenAIService();
+  final ChatService chatService = ChatService();
   List<types.Message> _messages = [];
   bool isDataLoading = false;
+  final Category category;
 
   types.User? _user;
   final types.User _bot = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3bd');
@@ -27,7 +29,7 @@ class ChatViewModel extends ChangeNotifier {
   bool get showButtons => _showButtons;
   bool get awaitingDetailedScenario => _awaitingDetailedScenario;
 
-  ChatViewModel() {
+  ChatViewModel({required this.category}) {
     _initializeUser();
     _loadInitialMessages();
   }
@@ -55,35 +57,44 @@ class ChatViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void _loadInitialMessages() {
-    Future.delayed(Duration(seconds: 1), () {
+  String formatGuidelines(String guidelines) {
+    List<String> items = guidelines.split(';');
+    List<String> formattedItems = [];
+    for (int i = 0; i < items.length; i++) {
+      formattedItems.add('${i + 1}. ${items[i].trim()}');
+    }
+    return formattedItems.join('\n');
+  }
+
+  void _loadInitialMessages() async {
+    try {
+      String guidelines = await chatService.fetchCategoryGuidelines(category.categoryId);
+      String formattedGuidelines = formatGuidelines(guidelines);
+
       _addMessage(types.TextMessage(
         author: _bot,
         createdAt: DateTime.now().millisecondsSinceEpoch,
         id: const Uuid().v4(),
         text: "좋은 아침 🌟",
       ));
-    });
 
-    Future.delayed(Duration(seconds: 2), () {
+      await Future.delayed(Duration(seconds: 2));
       _addMessage(types.TextMessage(
         author: _bot,
         createdAt: DateTime.now().millisecondsSinceEpoch,
         id: const Uuid().v4(),
-        text: "[거절 연습 시나리오]에서 지켜야할 점을 알려줄게!",
+        text: "[${category.categoryName}]에서 지켜야할 점을 알려줄게!",
       ));
-    });
 
-    Future.delayed(Duration(seconds: 4), () {
+      await Future.delayed(Duration(seconds: 2));
       _addMessage(types.TextMessage(
         author: _bot,
         createdAt: DateTime.now().millisecondsSinceEpoch,
         id: const Uuid().v4(),
-        text: "1. 거절할 때 상대방의 감정을 고려하면서도 자신의 의사를 확실히 전달하기",
+        text: formattedGuidelines,
       ));
-    });
 
-    Future.delayed(Duration(seconds: 7), () {
+      await Future.delayed(Duration(seconds: 3));
       _addMessage(types.TextMessage(
         author: _bot,
         createdAt: DateTime.now().millisecondsSinceEpoch,
@@ -92,7 +103,9 @@ class ChatViewModel extends ChangeNotifier {
       ));
       _showButtons = true;
       notifyListeners();
-    });
+    } catch (e) {
+      print('Error loading initial messages: $e');
+    }
   }
 
   void enableInputField() {

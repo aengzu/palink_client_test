@@ -17,7 +17,7 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => ChatViewModel(),
+      create: (_) => ChatViewModel(category: category),
       child: Scaffold(
         appBar: AppBar(title: Text(category.categoryName)),
         body: Consumer<ChatViewModel>(
