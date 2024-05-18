@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:palink_client/models/category.dart';
+import 'package:palink_client/viewmodels/controllers/chat_viewmodel.dart';
 import 'package:provider/provider.dart';
-import '../../../viewmodels/controllers/chat_viewmodel.dart';
 import 'componenets/custom_chat_input.dart';
 import 'componenets/custom_chat_theme.dart';
 import 'componenets/custom_btn_small.dart';
+
 
 class ChatScreen extends StatelessWidget {
   final Category category;
@@ -31,17 +32,15 @@ class ChatScreen extends StatelessWidget {
                     padding: EdgeInsets.only(bottom: model.showInputField ? 25.0 : 8.0),
                     child: Chat(
                       messages: model.messages,
-                      onSendPressed: model.showInputField
-                          ? (message) => model.handleSendPressed(message.text)
-                          : (message) {}, // Provide a no-op function when input field is hidden
+                      onSendPressed: (message) => model.handleSendPressed(message.text, context, category),
                       showUserAvatars: true,
                       showUserNames: true,
                       user: model.user!,
                       customBottomWidget: CustomChatInput(
                         isVisible: model.showInputField,
-                        onSendPressed: (text) => model.handleSendPressed(text),
+                        onSendPressed: (text) => model.handleSendPressed(text, context, category),
                       ),
-                      theme: const CustomChatTheme(), // Apply custom theme
+                      theme: const CustomChatTheme(),
                     ),
                   ),
                 ),
@@ -71,7 +70,7 @@ class ChatScreen extends StatelessWidget {
                               child: CustomButtonSM(
                                 text: "응, 있어",
                                 onPressed: () {
-                                  model.handleSendPressed("응, 있어");
+                                  model.handleSendPressed("응, 있어", context, category);
                                   model.enableInputField();
                                   model.hideButtons();
                                 },
@@ -82,7 +81,7 @@ class ChatScreen extends StatelessWidget {
                               child: CustomButtonSM(
                                 text: "아니, 없어",
                                 onPressed: () {
-                                  model.handleSendPressed("아니, 없어");
+                                  model.handleSendPressed("아니, 없어", context, category);
                                   model.hideButtons();
                                 },
                               ),
