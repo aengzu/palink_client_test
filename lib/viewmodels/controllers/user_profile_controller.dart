@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:palink_client/services/auth_service.dart';
 import 'package:palink_client/models/user.dart';
-
 import 'login_controller.dart';
 
 class UserProfileController extends GetxController {
@@ -21,8 +20,9 @@ class UserProfileController extends GetxController {
   Future<void> fetchUserInfo(String token) async {
     try {
       var userData = await _authService.getUserInfo(token);
-      print(userData);
+      print("Fetched user data: $userData");
       user.value = User.fromJson(userData); // Convert JSON to a User object
+      print("User initialized: ${user.value}");
     } catch (e) {
       Get.snackbar("Error", "Failed to fetch user info: $e");
       user.value = null;
