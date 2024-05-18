@@ -23,6 +23,20 @@ class ChatService {
     }
   }
 
+  Future<String> fetchCategoryGuidelines(int categoryId) async {
+    try {
+      final response = await http.get(Uri.parse('$baseUrl/categories/$categoryId'));
+      if (response.statusCode == 200) {
+        var data = jsonDecode(utf8.decode(response.bodyBytes));
+        return data['guidelines'];
+      } else {
+        throw Exception('Failed to fetch category guidelines');
+      }
+    } catch (e) {
+      throw Exception('Error fetching category guidelines: $e');
+    }
+  }
+
   // 채팅 세션 시작
   // 채팅 세션 시작 메소드 수정
   Future<int> initiateChatSession(int categoryId) async {
