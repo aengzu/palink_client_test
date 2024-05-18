@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+import 'package:palink_client/contants/app_url.dart';
 import 'package:palink_client/models/user.dart';
 import '../models/message.dart';
 
@@ -9,7 +10,11 @@ class OpenAIService {
   static const apiUri = 'https://api.openai.com/v1/chat/completions';
 
   // 여기에 올바른 API 키를 입력하세요.
-  final String apiKey = '';
+  get apiKey => AppUrl().apiKey;
+
+
+
+
 
   Future<String> extractConversationInfo(String prompt, String category, types.User user) async {
     final requestPrompt = '''당신의 USER가 입력한 내용을 분석하여 [대화 상황과 대화 참여자의 정보]를 json 형태로 출력해야 합니다.
